@@ -11,7 +11,7 @@ export const experience: ExperienceItem = {
     'Document issues and assist users with technical concerns.',
   ],
   infrastructure: [
-    'Administer 800+ Google Workspace accounts.',
+    'Administer 1500+ Google Workspace accounts.',
     'Troubleshoot LAN/WAN and TCP/IP connectivity.',
     'Support access points, IP management, cabling, and ISP coordination.',
     'Assist with CCTV operations and institutional website maintenance.',
