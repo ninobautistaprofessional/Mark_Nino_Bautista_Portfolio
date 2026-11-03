@@ -13,6 +13,7 @@ export interface Project {
 
 export interface SkillGroup {
   title: string
+  icon: string
   skills: string[]
 }
 

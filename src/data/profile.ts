@@ -17,7 +17,7 @@ export const profile = {
     'My experience in an educational environment has taught me to balance day-to-day user needs with the reliability of shared systems and campus services.',
   bring: [
     'Practical troubleshooting for hardware, software, Windows, and connectivity issues.',
-    'Experience administering more than 800 Google Workspace accounts.',
+    'Experience administering more than 1500 Google Workspace accounts.',
     'Foundational network operations knowledge, including TCP/IP, access points, and cabling.',
     'Website maintenance and familiarity with modern front-end technologies.',
     'Communication, documentation, and coordination with users and service providers.',

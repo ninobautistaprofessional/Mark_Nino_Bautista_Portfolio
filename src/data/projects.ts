@@ -37,4 +37,17 @@ export const projects: Project[] = [
     contributionNote:
       'Specific features and implementation details should be added only if verified and part of your work.',
   },
+
+  {
+    id: 'Lake Shore Colleges ID Management System',
+    title: 'Lake Shore Colleges ID Management System',
+    tag: 'Operational web service',
+    description:
+      'A dedicated web interface for managing institutional ID cards, separate from the institution\u2019s public-facing website.',
+    iconLabel: '04 / ID MANAGEMENT',
+    skills: ['Web application support', 'UI maintenance', 'Troubleshooting'],
+    liveUrl: '',
+    contributionNote:
+      'Project description is based on the public system identity. Add workflow details and your individual contribution once confirmed.',
+  },
 ]

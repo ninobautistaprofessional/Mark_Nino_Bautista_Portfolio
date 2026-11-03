@@ -26,6 +26,6 @@ export const education: EducationItem = {
 
 export const quickStats: QuickStat[] = [
   { value: '3 yrs', label: 'IT experience' },
-  { value: '800+', label: 'Workspace accounts' },
+  { value: '1500+', label: 'Workspace accounts' },
   { value: '3', label: 'Featured web projects' },
 ]

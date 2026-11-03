@@ -1,6 +1,17 @@
 import { motion } from 'framer-motion'
+import { BookOpen, Globe, Headset, Network, ShoppingCart, Server, Wifi } from 'lucide-react'
 import { skillGroups } from '../../data/skills'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
+
+const ICONS = {
+  Wifi,
+  Server,
+  ShoppingCart,
+  Headset,
+  Network,
+  Globe,
+  BookOpen,
+} as const
 
 export function Skills() {
   const reduced = useReducedMotion()
@@ -9,31 +20,34 @@ export function Skills() {
       <div className="mb-7">
         <div className="text-accent font-bold tracking-[0.13em] uppercase text-xs">Technical toolkit</div>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl leading-tight tracking-tight mt-2 mb-0">Skills & technologies.</h2>
-        <p className="text-muted mt-3 max-w-xl m-0">A practical overview of the tools and areas relevant to my IT and web work.</p>
+        <p className="text-muted mt-3 max-w-xl m-0">Core competencies in IT infrastructure, network administration, web hosting, systems support, and IT procurement.</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {skillGroups.map((g, i) => (
-          <motion.article
-            key={g.title}
-            initial={reduced ? false : { opacity: 0, y: 20 }}
-            whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.06 }}
-            className="bg-gradient-to-b from-white/5 to-transparent bg-panel border border-line rounded-card p-6"
-          >
-            <h3 className="mt-0 mb-3">{g.title}</h3>
-            <div className="flex flex-wrap gap-2">
-              {g.skills.map((s) => (
-                <span
-                  key={s}
-                  className="px-2.5 py-1.5 border border-line bg-white/5 rounded-lg text-text text-sm"
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-          </motion.article>
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {skillGroups.map((g, i) => {
+          const Icon = ICONS[g.icon as keyof typeof ICONS]
+          return (
+            <motion.article
+              key={g.title}
+              initial={reduced ? false : { opacity: 0, y: 20 }}
+              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className="bg-gradient-to-b from-white/5 to-transparent bg-panel border border-line rounded-card p-6 flex flex-col"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 rounded-xl bg-accent/10 flex items-center justify-center text-accent border border-accent/20">
+                  <Icon size={20} strokeWidth={2} />
+                </div>
+                <h3 className="mt-0 mb-0 text-lg font-semibold">{g.title}</h3>
+              </div>
+              <ul className="space-y-2 list-disc list-inside text-muted text-sm leading-relaxed">
+                {g.skills.map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ul>
+            </motion.article>
+          )
+        })}
       </div>
     </section>
   )
