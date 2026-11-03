@@ -2,9 +2,12 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Mail } from 'lucide-react'
 import { profile } from '../../data/profile'
 import { quickStats } from '../../data/experience'
+import mePhoto from '../../assets/me.jpg'
+import { useState } from 'react'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 
 export function Hero() {
+  const [showImageModal, setShowImageModal] = useState(false)
   const reduced = useReducedMotion()
   const reveal = (delay = 0) => ({
     initial: reduced ? false : { opacity: 0, y: 24 },
@@ -59,9 +62,12 @@ export function Hero() {
         {...reveal(0.2)}
         className="p-7 border border-line rounded-3xl bg-gradient-to-br from-accent/10 to-accent2/5 bg-panel shadow-2xl max-w-md"
       >
-        <div className="w-[74px] h-[74px] rounded-2xl grid place-items-center text-2xl font-black text-[#09201f] bg-gradient-to-br from-accent to-accent2 mb-5">
-          {profile.monogram}
-        </div>
+        <img
+          src={mePhoto}
+          alt={`Portrait of ${profile.name}`}
+          className="w-[74px] h-[74px] rounded-2xl object-cover mb-5 border border-line cursor-pointer hover:opacity-80 transition-opacity"
+          onClick={() => setShowImageModal(true)}
+        />
         <div className="text-accent font-bold tracking-[0.13em] uppercase text-xs">Professional profile</div>
         <h3 className="text-xl mt-2 mb-1">{profile.role}</h3>
         <p className="text-muted m-0">{profile.subtitle}</p>
@@ -79,6 +85,31 @@ export function Hero() {
           </a>
         </div>
       </motion.aside>
+
+      {showImageModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setShowImageModal(false)}
+        >
+          <div
+            className="relative z-10 bg-white/5 border border-line rounded-2xl p-4 max-w-4xl max-h-[90vh] overflow-auto shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowImageModal(false)}
+              className="absolute top-4 right-4 text-text hover:text-accent transition-colors"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+            <img
+              src={mePhoto}
+              alt={`Portrait of ${profile.name}`}
+              className="w-full max-w-md object-cover rounded-xl border border-line"
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }
