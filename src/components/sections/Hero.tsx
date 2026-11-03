@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Mail } from 'lucide-react'
+import { ArrowRight, Mail, Phone } from 'lucide-react'
 import { profile } from '../../data/profile'
 import { quickStats } from '../../data/experience'
 import mePhoto from '../../assets/me.jpg'
@@ -8,6 +8,7 @@ import { useReducedMotion } from '../../hooks/useReducedMotion'
 
 export function Hero() {
   const [showImageModal, setShowImageModal] = useState(false)
+  const [showContactModal, setShowContactModal] = useState(false)
   const reduced = useReducedMotion()
   const reveal = (delay = 0) => ({
     initial: reduced ? false : { opacity: 0, y: 24 },
@@ -77,12 +78,13 @@ export function Hero() {
           website maintenance.
         </p>
         <div className="mt-5">
-          <a
-            href={`mailto:${profile.email}`}
+          <button
+            onClick={() => setShowContactModal(true)}
             className="inline-flex items-center gap-2 px-4 py-3 rounded-xl font-bold bg-accent text-[#08201e] border border-accent hover:bg-[#9bf3e9] transition-colors"
+            aria-label="Contact me"
           >
-            <Mail size={16} /> Email me
-          </a>
+            <Mail size={16} /> Contact me
+          </button>
         </div>
       </motion.aside>
 
@@ -107,6 +109,42 @@ export function Hero() {
               alt={`Portrait of ${profile.name}`}
               className="w-full max-w-md object-cover rounded-xl border border-line"
             />
+          </div>
+        </div>
+      )}
+
+      {showContactModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setShowContactModal(false)}
+        >
+          <div
+            className="relative z-10 bg-white/5 border border-line rounded-2xl p-5 max-w-sm max-h-[90vh] overflow-auto shadow-2xl text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowContactModal(false)}
+              className="absolute top-3 right-3 text-text hover:text-accent transition-colors"
+              aria-label="Close contact details"
+            >
+              ✕
+            </button>
+            <div className="text-accent font-bold tracking-[0.13em] uppercase text-xs mb-2">
+              Contact me
+            </div>
+            <h3 className="text-lg mt-0 mb-4">Get in touch</h3>
+            <a
+              href={`mailto:${profile.email}`}
+              className="inline-flex items-center justify-center gap-2 text-accent hover:underline mb-3 block"
+            >
+              <Mail size={16} /> {profile.email}
+            </a>
+            <a
+              href={`tel:${profile.phoneTel}`}
+              className="inline-flex items-center justify-center gap-2 text-accent hover:underline"
+            >
+              <Phone size={16} /> {profile.phone}
+            </a>
           </div>
         </div>
       )}
