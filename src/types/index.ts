@@ -47,3 +47,25 @@ export interface ContactResult {
   ok: boolean
   message: string
 }
+
+export interface ITTool {
+  id: string
+  name: string
+  category: string
+  description: string
+  usage: string
+  skills: string[]
+  website: string
+  icon: string
+}
+
+export type ToolCategory =
+  | 'Remote Access & Support'
+  | 'Network Management & Diagnostics'
+  | 'IT Service & Ticketing'
+  | 'Development & Version Control'
+  | 'Virtualization & OS Deployment'
+  | 'System Administration'
+  | 'Identity & Credential Management'
+  | 'Cloud & Collaboration'
+  | 'Security & Surveillance'
